@@ -1,0 +1,2 @@
+index	enzymestring	name
+1	[KR]|{P}	trypsin

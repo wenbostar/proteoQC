@@ -1,0 +1,36 @@
+Package: proteoQC
+Type: Package
+Title: An R package for proteomics data quality control
+Version: 1.11.5
+Author: Bo Wen <wenbo@genomics.cn>, Laurent Gatto <lg390@cam.ac.uk>
+Maintainer: Bo Wen <wenbo@genomics.cn>
+Description: This package creates an HTML format QC report for MS/MS-based
+    proteomics data. The report is intended to allow the user to quickly assess
+    the quality of proteomics data.
+Depends:
+    R (>= 3.0.0),
+    XML,
+    VennDiagram,
+    MSnbase
+Imports:
+    rTANDEM,
+    plyr,
+    seqinr,
+    Nozzle.R1,
+    ggplot2,
+    reshape2,
+    parallel,
+    Rcpp (>= 0.11.1)
+LinkingTo: Rcpp
+License: LGPL-2
+Suggests:
+    RforProteomics,
+    knitr,
+    BiocStyle,
+    rpx,
+    R.utils,
+    RUnit,BiocGenerics
+VignetteBuilder: knitr
+biocViews: Proteomics, MassSpectrometry, QualityControl,
+    Visualization, ReportWriting
+RoxygenNote: 6.0.1

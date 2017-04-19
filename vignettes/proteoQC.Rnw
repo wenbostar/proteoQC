@@ -1,0 +1,340 @@
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{proteoQC tutorial}
+%\VignetteKeywords{Proteomics, Quality Control}
+%\VignettePackage{proteoQC}
+
+\documentclass[12pt]{article}
+
+<<style, eval=TRUE, echo=FALSE, results='asis'>>=
+BiocStyle::latex()
+@
+
+
+\bioctitle{A short tutorial on using \Biocpkg{proteoQC} for mass
+  spectrometry-based proteomics}
+
+\author{ 
+  Laurent Gatto and Bo Wen
+}
+
+
+\begin{document}
+
+\maketitle
+
+<<env, echo=FALSE,warning=FALSE>>=
+suppressPackageStartupMessages(library("proteoQC"))
+suppressPackageStartupMessages(library("R.utils"))
+@
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}\label{sec:intro} 
+
+The \Biocpkg{proteoQC} package provides a integrated pipeline for mass
+spectrometry-based proteomics quality control. It allows to generate a
+dynamic report starting from a set of \texttt{mgf} or \texttt{mz[X]ML}
+format peak list files, a protein database file and a description file of
+the experimental design. It performs an MS/MS search against the protein
+data base using the \texttt{X!Tandem} search engine \cite{Craig:2004} and the
+\Biocpkg{rTANDEM} package \cite{rTANDEM}. The results are then
+summarised and compiled into an interactive html report using the
+\Rpackage{Nozzle.R1} package \cite{Nozzle.R1, Gehlenborg:2013}.
+
+\section{Example data}\label{sec:data} 
+
+We are going to use parts a dataset from the ProteomeXchange
+repository (\url{http://www.proteomexchange.org/}). We will use the
+\Biocpkg{rpx} package to accessed and downloaded the data.
+
+
+<<showdata, eval=TRUE,warning=FALSE,error=FALSE>>=
+library("rpx")
+px <- PXDataset("PXD000864")
+px
+@
+
+There are a total of \Sexpr{length(pxfiles(px))} files available from
+the ProteomeXchange repository, including raw data files
+(\texttt{raw}), result files (\texttt{-pride.xml.gz}), (compressed)
+peak list files (\texttt{.mgf.gz}) and, the fasta database file
+(\texttt{TTE2010.zip}) and one \texttt{README.txt} file.
+
+<<pxfiles>>=
+head(pxfiles(px))
+tail(pxfiles(px))
+@
+
+
+The files, in particular the \texttt{mgf} files that will be used in
+the rest of this document are named as follows \texttt{TTE-CC-B-FR-R}
+where \texttt{CC} takes values 55 or 75 and stands for the bacteria
+culture temperature in degree Celsius, \texttt{B} stands for the
+biological replicate (only 1 here), \texttt{FR} represents the
+fraction number from 01 to 12 and the leading \texttt{R} documents one
+of three technical replicates. (See also
+\url{http://www.ebi.ac.uk/pride/archive/projects/PXD000864} for
+details). Here, we will make use of a limited number of samples
+below. First, we create a vector that stores the file names of
+interest.
+
+<<mgfs, eval=TRUE>>=
+mgfs <- grep("mgf", pxfiles(px), value = TRUE)
+mgfs <- grep("-0[5-6]-[1|2]", mgfs, value=TRUE)
+mgfs
+@
+
+These files can be downloaded\footnote{In the interest of time, the
+  files are not downloaded when this vignette is compiled and the
+  quality metrics are pre-computed (see details below). These
+  following code chunks can nevertheless be executed to reproduce the
+  complete pipeline.} using the \Rfunction{pxget}, providing the
+relevant data object (here \Robject{px}) and file names to be
+downloaded (see \Rfunction{?pxget} for details). We also need to
+uncompress (using \Rfunction{gunzip}) the files.
+
+<<downloadmgfs, eval=FALSE>>=
+mgffiles <- pxget(px, mgfs)
+library("R.utils")
+mgffiles <- sapply(mgffiles, gunzip)
+@
+
+To reduce the file size of the demonstration data included for this
+package, we have trimmed the peak lists to 1/10 of the original number
+of spectra. All the details are provided in the vignette source.
+
+<<timmgf, echo=FALSE, eval=FALSE>>=
+## Generate the lightweight qc report, 
+## trim the mgf files to 1/10 of their size.
+
+trimMgf <- function(f, m = 1/10, overwrite = FALSE) {
+    message("Reading ", f)
+    x <- readLines(f)
+    beg <- grep("BEGIN IONS", x)
+    end <- grep("END IONS", x)
+    n <- length(beg)
+    message("Sub-setting to ", m)
+    i <- sort(sample(n, floor(n * m)))
+    k <- unlist(mapply(seq, from = beg[i], to = end[i]))
+    if (overwrite) {
+        unlink(f)
+        message("Writing ", f)
+        writeLines(x[k], con = f)
+        return(f)
+    } else {
+        g <- sub(".mgf", "_small.mgf", f)
+        message("Writing ", g)
+        writeLines(x[k], con = g)
+        return(g)
+    }    
+}
+
+set.seed(1)
+mgffiles <- sapply(mgffiles, trimMgf, overwrite = TRUE)
+@
+
+Similarly, below we download the database file and unzip it.
+
+<<downloadfasta, eval=FALSE>>=
+fas <- pxget(px, "TTE2010.zip")
+fas <- unzip(fas)
+fas
+@
+
+
+\section{Running \Biocpkg{proteoQC}}\label{sec:msqc} 
+
+<<makedesignfile, eval=FALSE, echo=FALSE>>=
+
+## code to regenerate the design file
+sample <- rep(c("55","75"),each=4)
+techrep <- rep(1:2, 4)
+biorep <- rep(1, length(mgffiles))
+frac <- rep((rep(5:6, each = 2)), 2)
+des <- data.frame(file = mgffiles,
+                  sample = sample,
+                  bioRep = biorep, techRep = techrep,
+                  fraction = frac,
+                  row.names = NULL)
+
+write.table(des, sep = " ", row.names=FALSE,
+            quote = FALSE,
+            file = "../inst/extdata/PXD000864-design.txt")
+
+@
+
+\subsection{Preparing the QC}
+
+The first step in the \Biocpkg{proteoQC} pipeline is the definition of a
+design file, that provides the \texttt{mgf} file names,
+\texttt{sample} numbers, biological (\texttt{biocRep}) and technical
+(\texttt{techRep}) replicates and \texttt{fraction} numbers in a
+simple space-separated tabular format. We provide such a design file
+for our \Sexpr{length(mgfs)} files of interest.
+
+<<design>>=
+design <- system.file("extdata/PXD000864-design.txt", package = "proteoQC")
+design
+read.table(design, header = TRUE)
+@
+
+\subsection{Running the QC}
+
+We need to load the \Biocpkg{proteoQC} package and call the
+\Rfunction{msQCpipe} function, providing appropriate input parameters,
+in particular the \texttt{design} file, the \texttt{fasta} protein
+database, the \texttt{outdir} output directory that will contain the
+final quality report and various other peptide spectrum matching
+parameters that will be passed to the \Biocpkg{rTANDEM} package. See
+\Rfunction{?msQCpipe} for a more in-depth description of all its
+arguments. Please note that if you take mz[X]ML format files as input, you must
+make sure that you have installed the rTANDEM that the version is greater than
+1.5.1.
+
+<<run, eval=FALSE, tidy=FALSE>>=
+qcres <- msQCpipe(spectralist = design,
+                  fasta = fas, 
+                  outdir = "./qc",
+                  miss  = 0,
+                  enzyme = 1, varmod = 2, fixmod = 1,
+                  tol = 10, itol = 0.6, cpu = 2,
+                  mode = "identification")
+@
+
+The \Rfunction{msQCpipe} function will run each mgf input file
+documented in the design file and search it against the fasta database
+using the \Rfunction{tandem} function from the \Biocpkg{rTANDEM}. This
+might take some time depending on the number of files to be searched
+and the search parameters. The code chunk above takes about 3 minutes
+using 2 cores (\texttt{cpu = 2} above) on a modern laptop.
+
+You can load the pre-computed quality control directory and result
+data that a shipped with \Biocpkg{proteoQC} as shown below:
+
+<<loadres>>=
+zpqc <- system.file("extdata/qc.zip", package = "proteoQC")
+unzip(zpqc)
+qcres <- loadmsQCres("./qc")
+@
+
+
+<<res>>=
+print(qcres)
+@
+
+\subsection{Generating the QC report}
+
+The final quality report can be generated with the
+\Rfunction{reportHTML}, passing the \Robject{qcres} object produced by
+the \Rfunction{msQCpipe} function above or the directory storing the
+QC data, as defined as parameter to the \Rfunction{msQCpipe}.
+
+<<rep1, message = FALSE>>=
+html <- reportHTML(qcres)
+@
+
+or
+
+<<rep2, message = FALSE>>=
+html <- reportHTML("./qc")
+@
+
+
+<<qczip, eval=FALSE, echo=FALSE>>=
+## Remove these files as they are really big
+## but this breaks reportHTML(qcres), though
+unlink("./qc/database/target_decoy.fasta")
+unlink("./qc/result/*_xtandem.xml")
+unlink("../inst/extdata/qc.zip")
+zip("../inst/extdata/qc.zip", "./qc")
+@
+
+The report can then be opened by opening the
+\texttt{qc/qc\_report.html} file in a web browser or directly with
+\Rfunction{browseURL(html)}.
+
+\section{The QC report}
+
+The dynamic html report is composed of 3 sections: an introduction, a
+methods and data section and a result part. The former are purely
+descriptive and summarise the design matrix and analysis parameters,
+as passed to \Rfunction{msQCpipe}.
+
+The respective sections and sub-sections can be expanded and collapsed
+and each figure in the report can be zoomed in. While the dynamic html
+report is most useful for interactive inspection, it is also possible
+to print the complete report for archiving.
+
+The results section provides tables and graphics that summarise 
+
+\begin{itemize}
+\item Summaries of identification results for individual files as well
+  as technical and biological replicates at the protein, peptide and
+  spectrum levels.
+\item Summary overview charts that describe number of missed
+  cleavages, peptide charge distributions, peptide length, precursor
+  and fragment ion mass deviations, number of unique spectra/peptides
+  per proteins and protein mass distributions for each sample.
+\item A contamination summary table generated using the common
+  Repository of Adventitious Proteins (\textit{cRAP}).
+\item Reproducibility summaries that compare fractions, replicates and
+  samples, representing total number of spectra, number of identified
+  spectra, number of peptides and proteins and overlap of peptides and
+  proteins across replicates.
+\item Summary histograms of mass accuracies for fragment and precursor
+  ions.
+\item A summary of the separation efficiency showing the effect of
+  accumulating fractions for all samples.
+\item A summary of identification-independent QC metrics.
+\end{itemize} 
+
+
+\section{Some useful functions}
+
+\subsection{Protein inference}
+Protein inference from peptide identifications in shotgun proteomics is a very 
+important task. We provide a function \Rfunction{proteinGroup} for this purpose.
+This function is based on the method used in our another package 
+\Biocpkg{sapFinder} \cite{wen2014sapfinder}. You can use the function as below:
+
+<<pg,fig.width=6,fig.height=4>>=
+pep.zip <- system.file("extdata/pep.zip", package = "proteoQC")
+unzip(pep.zip)
+proteinGroup(file = "pep.txt", outfile = "pg.txt")
+@
+
+
+
+\subsection{Isobaric tagging reagent labeling efficiency}
+The labeling efficiency of the isobaric tag reagents to peptides, such as iTRAQ
+and TMT, is a very important experiment quality metrics. We provide a function
+\Rfunction{labelRatio} to calculate this metrics. You can use the function 
+as below:
+
+<<labelRatio>>=
+mgf.zip <- system.file("extdata/mgf.zip", package = "proteoQC")
+unzip(mgf.zip)
+a <- labelRatio("test.mgf")
+@
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Session information}\label{sec:sessionInfo} 
+
+All software and respective versions used to produce this document are listed below.
+
+<<sessioninfo, results='asis', echo=FALSE>>=
+toLatex(sessionInfo())
+@
+
+\bibliography{proteoQC}
+
+\end{document}
+

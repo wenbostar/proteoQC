@@ -1,0 +1,9 @@
+file sample bioRep techRep fraction
+TTE-55-1-05-1.mgf 55 1 1 5
+TTE-55-1-05-2.mgf 55 1 2 5
+TTE-55-1-06-1.mgf 55 1 1 6
+TTE-55-1-06-2.mgf 55 1 2 6
+TTE-75-1-05-1.mgf 75 1 1 5
+TTE-75-1-05-2.mgf 75 1 2 5
+TTE-75-1-06-1.mgf 75 1 1 6
+TTE-75-1-06-2.mgf 75 1 2 6

@@ -1,0 +1,116 @@
+ID	Acc	Reason	Class	Description
+1	ALBU_BOVIN	Reagent and lab contaminant	Laboratory proteins	(P02769) Serum albumin precursor (Allergen Bos d 6) (BSA)
+2	CTRA_BOVIN	Reagent	Laboratory proteins	(P00766) Chymotrypsinogen A (EC 3.4.21.1) [Contains: Chymotrypsin A chain A; Chymotrypsin A chain B; Chymotrypsin A chain C]
+3	CTRB_BOVIN	Reagent	Laboratory proteins	(P00767) Chymotrypsinogen B (EC 3.4.21.1) [Contains: Chymotrypsin B chain A; Chymotrypsin B chain B; Chymotrypsin B chain C]
+4	LALBA_BOVIN	Reagent and lab contaminant	Laboratory proteins	(P00711) Alpha-lactalbumin precursor (Lactose synthase B protein) (Allergen Bos d 4)
+5	LYSC_LYSEN	Reagent	Laboratory proteins	(Q7M135) Lysyl endopeptidase (EC 3.4.21.50) (Lys-C)
+6	PEPA_BOVIN	Reagent	Laboratory proteins	(P00792) Pepsin A precursor (EC 3.4.23.1)
+7	PEPA_PIG	Reagent	Laboratory proteins	(P00791) Pepsin A precursor (EC 3.4.23.1)
+8	PEPB_PIG	Reagent	Laboratory proteins	(Q10735) Pepsin B precursor (EC 3.4.23.2) (Parapepsin I) (Fragment)
+9	PEPC_PIG	Reagent	Laboratory proteins	(P30879) Gastricsin precursor (EC 3.4.23.3) (Pepsinogen C) (Fragment)
+10	SSPA_STAAU	Reagent	Laboratory proteins	(P04188) Glutamyl endopeptidase precursor (EC 3.4.21.19) (Staphylococcal serine proteinase) (V8 protease) (V8 proteinase) (Endoproteinase Glu-C)
+11	TRY1_BOVIN	Reagent	Laboratory proteins	(P00760) Cationic trypsin precursor (EC 3.4.21.4) (Beta-trypsin) [Contains: Alpha-trypsin chain 1; Alpha-trypsin chain 2] (Fragment)
+12	TRY2_BOVIN	Reagent	Laboratory proteins	(Q29463) Anionic trypsin precursor (EC 3.4.21.4)
+13	TRYP_PIG	Reagent	Laboratory proteins	(P00761) Trypsin precursor (EC 3.4.21.4)
+14	CAS1_BOVIN	Reagent and lab contaminant	Laboratory proteins	(P02662) Alpha-S1-casein precursor
+15	CAS2_BOVIN	Reagent and lab contaminant	Laboratory proteins	(P02663) Alpha-S2-casein precursor [Contains: Casocidin-1 (Casocidin-I)]
+16	CASB_BOVIN	Reagent and lab contaminant	Laboratory proteins	(P02666) Beta-casein precursor
+17	CASK_BOVIN	Reagent and lab contaminant	Laboratory proteins	(P02668) Kappa-casein precursor [Contains: Casoxin C; Casoxin 6; Casoxin A; Casoxin B; Casoplatelin]
+18	GFP_AEQVI	Reagent	Laboratory proteins	(P42212) Aequorea victoria Green fluorescent protein
+19	PLMP_GRIFR	Reagent	Laboratory proteins	(P81054) Peptidyl-Lys metalloendopeptidase precursor - Grifola frondosa (LysN)
+20	AMYS_HUMAN	Human saliva	Dust/contact proteins	"(P04745) Salivary alpha-amylase precursor (EC 3.2.1.1) (1,4-alpha-D-glucan glucanohydrolase)"
+21	K1C10_HUMAN	Human skin	Dust/contact proteins	"(P13645) Keratin, type I cytoskeletal 10 (Cytokeratin-10) (CK-10) (Keratin-10) (K10)"
+22	K1C9_HUMAN	Human skin	Dust/contact proteins	"(P35527) Keratin, type I cytoskeletal 9 (Cytokeratin-9) (CK-9) (Keratin-9) (K9)"
+23	K2C1_HUMAN	Human skin	Dust/contact proteins	"(P04264) Keratin, type II cytoskeletal 1 (Cytokeratin-1) (CK-1) (Keratin-1) (K1) (67 kDa cytokeratin) (Hair alpha protein)"
+24	K22E_HUMAN	Human skin	Dust/contact proteins	"(P35908) Keratin, type II cytoskeletal 2 epidermal (Cytokeratin-2e) (K2e) (CK 2e)"
+25	K1H1_HUMAN	Human hair	Dust/contact proteins	"(Q15323) Keratin, type I cuticular Ha1 (Hair keratin, type I Ha1)"
+26	K1H2_HUMAN	Human hair	Dust/contact proteins	"(Q14532) Keratin, type I cuticular Ha2 (Hair keratin, type I Ha2)"
+27	K1H4_HUMAN	Human hair	Dust/contact proteins	"(O76011) Keratin, type I cuticular Ha4 (Hair keratin, type I Ha4)"
+28	K1H5_HUMAN	Human hair	Dust/contact proteins	"(Q92764) Keratin, type I cuticular Ha5 (Hair keratin, type I Ha5)"
+29	K1H6_HUMAN	Human hair	Dust/contact proteins	"(O76013) Keratin, type I cuticular Ha6 (Hair keratin, type I Ha6)"
+30	K1H7_HUMAN	Human hair	Dust/contact proteins	"(O76014) Keratin, type I cuticular Ha7 (Hair keratin, type I Ha7)"
+31	K1H8_HUMAN	Human hair	Dust/contact proteins	"(O76015) Keratin, type I cuticular Ha8 (Hair keratin, type I Ha8)"
+32	K1HA_HUMAN	Human hair	Dust/contact proteins	"(O76009) Keratin, type I cuticular Ha3-I (Hair keratin, type I Ha3-I)"
+33	K1HB_HUMAN	Human hair	Dust/contact proteins	"(Q14525) Keratin, type I cuticular Ha3-II (Hair keratin, type I Ha3-II)"
+34	KRHB1_HUMAN	Human hair	Dust/contact proteins	"(Q14533) Keratin, type II cuticular Hb1 (Hair keratin, type II Hb1) (ghHKb1) (ghHb1) (MLN 137)"
+35	KRHB2_HUMAN	Human hair	Dust/contact proteins	"(Q9NSB4) Keratin, type II cuticular Hb2 (Hair keratin, type II Hb2)"
+36	KRHB3_HUMAN	Human hair	Dust/contact proteins	"(P78385) Keratin, type II cuticular Hb3 (Hair keratin, type II Hb3)"
+37	KRHB4_HUMAN	Human hair	Dust/contact proteins	"(Q9NSB2) Keratin, type II cuticular Hb4 (Hair keratin, type II Hb4)"
+38	KRHB5_HUMAN	Human hair	Dust/contact proteins	"(P78386) Keratin, type II cuticular Hb5 (Hair keratin, type II Hb5)"
+39	KRHB6_HUMAN	Human hair	Dust/contact proteins	"(O43790) Keratin, type II cuticular Hb6 (Hair keratin, type II Hb6) (ghHb6)"
+40	K1C15_SHEEP	Sheep wool	Dust/contact proteins	"(O77727) Keratin, type I cytoskeletal 15 (Cytokeratin-15) (CK-15) (Keratin-15) (K15)"
+41	K1M1_SHEEP	Sheep wool	Dust/contact proteins	"(P02534) Keratin, type I microfibrillar 48 kDa, component 8C-1 (Low-sulfur keratin)"
+42	K1M2_SHEEP	Sheep wool	Dust/contact proteins	"(P25690) Keratin, type I microfibrillar, 47.6 kDa (Low-sulfur keratin)"
+43	K2M1_SHEEP	Sheep wool	Dust/contact proteins	"(P02539) Keratin, type II microfibrillar (Low-sulfur keratin) (Fragment)"
+44	K2M2_SHEEP	Sheep wool	Dust/contact proteins	"(P15241) Keratin, type II microfibrillar, component 7C"
+45	K2M3_SHEEP	Sheep wool	Dust/contact proteins	"(P25691) Keratin, type II microfibrillar, component 5"
+46	KRA33_SHEEP	Sheep wool	Dust/contact proteins	"(P02444) Keratin, high sulfur matrix protein, IIIB3"
+47	KRA34_SHEEP	Sheep wool	Dust/contact proteins	"(P02445) Keratin, high sulfur matrix protein, IIIB4"
+48	KRA3A_SHEEP	Sheep wool	Dust/contact proteins	"(P02443) Keratin, high-sulfur matrix protein, IIIA3A"
+49	KRA3_SHEEP	Sheep wool	Dust/contact proteins	"(P02441) Keratin, high-sulfur matrix protein, IIIA3"
+50	KRA61_SHEEP	Sheep wool	Dust/contact proteins	"(Q02958) Keratin, glycine/tyrosine-rich of hair"
+51	KRB2A_SHEEP	Sheep wool	Dust/contact proteins	"(P02438) Keratin, high-sulfur matrix protein, B2A"
+52	KRB2B_SHEEP	Sheep wool	Dust/contact proteins	"(P02439) Keratin, high-sulfur matrix protein, B2B"
+53	KRB2C_SHEEP	Sheep wool	Dust/contact proteins	"(P02440) Keratin, high-sulfur matrix protein, B2C"
+54	KRB2D_SHEEP	Sheep wool	Dust/contact proteins	"(P08131) Keratin, high-sulfur matrix protein, B2D"
+55	KRUC_SHEEP	Sheep wool	Dust/contact proteins	"(P26372) Keratin, ultra high-sulfur matrix protein (UHS keratin)"
+56	SRPP_HEVBR	Latex gloves	Dust/contact proteins	(O82803) Small rubber particle protein - Hevea brasiliensis
+57	REF_HEVBR	Latex gloves	Dust/contact proteins	(P15252) Rubber elongation factor protein - Hevea brasiliensis
+58	CYC_HORSE	Molecular weight marker/mass spec. standard	Molecular weight markers/Standard proteins	(P00004) Horse heart cytochrome C
+59	CAH2_BOVIN	Molecular weight marker	Molecular weight markers/Standard proteins	(P00921) Bovine carbonic anhydrase 2 (EC 4.2.1.1)
+60	ADH1_YEAST	Molecular weight marker	Molecular weight markers/Standard proteins	(P00330) Yeast alcohol dehydrogenase 1
+61	ALDOA_RABIT	Molecular weight marker	Molecular weight markers/Standard proteins	(P00883) Rabbit fructose-bisphosphate aldolase A
+62	LYSC_CHICK	Molecular weight marker/mass spec. standard	Molecular weight markers/Standard proteins	(P00698) Hen egg lysozyme C precursor
+63	MYG_HORSE	Molecular weight marker/mass spec. standard	Molecular weight markers/Standard proteins	(P68082) Horse heart myoglobin
+64	OVAL_CHICK	Molecular weight marker	Molecular weight markers/Standard proteins	(P01012) Hen egg ovalbumin
+65	BGAL_ECOLI	Molecular weight marker	Molecular weight markers/Standard proteins	(P00722) E. coli beta-galactosidase (E.C. 3.2.1.23)
+66	DHE3_BOVIN	Molecular weight marker	Molecular weight markers/Standard proteins	"(P00366) Bovine glutamate dehydrogenase 1, mitochondrial precursor (E.C. 1.4.1.3)"
+67	ALBU_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P02768) Serum albumin 66,393 Recombinant Pichia pastoris"
+68	ANT3_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P01008) Antithrombin-III 49,033 Plasma Glycosylation"
+69	ANXA5_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P08758) Annexin A5 35,782 Placenta Acetylation"
+70	B2MG_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P61769) Beta-2-microglobulin 11,729 Urine"
+71	BID_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P55957) BH3 interacting domain death agonist [BID] 21,978 Recombinant E. coli"
+72	CAH1_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P00915) Carbonic anhydrase 1 28,738 Erythrocytes Acetylation"
+73	CAH2_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P00918) Carbonic anhydrase 2 29,095 Erythrocytes Acetylation"
+74	CATA_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P04040) Catalase 59,583 Erythrocytes"
+75	CATD_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P07339) Cathepsin D 26,624 Liver Glycosylation"
+76	CATG_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P08311) Cathepsin G 26,751 Sputum Glycosylation"
+77	CO5_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P01031) Complement C5 [Complement C5a] 8,266 Recombinant E. coli"
+78	CRP_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P02741) C-reactive protein 23,030 Plasma"
+79	CYB5_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P00167) Cytochrome b5 16,021 Recombinant E. coli 6-His"
+80	CYC_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P99999) Cytochrome c [Apocytochrome c] 11,608 Recombinant E. coli"
+81	EGF_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P01133) Epidermal growth factor 6,211 Recombinant E. coli"
+82	FABPH_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P05413) Fatty acid-binding protein 14,716 Plasma Acetylation,Phosphorylation"
+83	GELS_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P06396) Gelsolin 82,954 Plasma Phosphorylation"
+84	GSTA1_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P08263) Glutathione S-transferase A1 [GST A1-1] 25,482 Recombinant E. coli"
+85	GSTP1_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P09211) Glutathione S-transferase P [GST] 23,220 Placenta"
+86	HBA_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P69905) Hemoglobin alpha chain 15,127 Erythrocytes"
+87	HBB_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P68871) Hemoglobin beta chain 15,867 Erythrocytes,Acetylation,Nitrosylation,Glycosylation"
+88	IGF2_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P01344) Insulin-like growth factor II 7,464 Recombinant E. coli"
+89	IL8_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P10145) Interleukin-8 8,381 Recombinant E. coli"
+90	KCRM_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P06732) Creatine kinase M-type [CK-MM] 43,070 Heart"
+91	LALBA_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P00709) Alpha-lactalbumin 14,070 Milk Glycosylation"
+92	LEP_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P41159) Leptin 16,024 Recombinant E. coli"
+93	LYSC_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P61626) Lysozyme C 14,692 Milk"
+94	MYG_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P02144) Myoglobin 17,051 Heart"
+95	NEDD8_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(Q15843) Neddylin [Nedd8] 9,071 Recombinant E. coli"
+96	NQO1_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P15559) NAD(P)H dehydrogenase [quinone] 1[DT Diaphorase] 30,984 Recombinant E. coli"
+97	NQO2_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P16083) Ribosyldihydronicotinamide dehydrogenase(quinone) [Quinone oxidoreductase 2 or NQO2] 25,817 Recombinant E. coli"
+98	PDGFB_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P01127) Platelet-derived growth factor B chain 12,286 Recombinant E. coli"
+99	PPIA_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P62937) Peptidyl-prolyl cis-trans isomerase A [Cyclophilin A] 17,947 Recombinant E. coli"
+100	PRDX1_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(Q06830) Peroxiredoxin 1 22,106 Recombinant E. coli"
+101	RASH_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P01112) GTPase HRas [Ras protein] 21,292 Recombinant E. coli"
+102	RETBP_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P02753) Retinol-binding protein 21,065 Urine"
+103	SODC_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P00441) Superoxide dismutase [Cu-Zn] 15,800 Erythrocytes Acetylation"
+104	SUMO1_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P63165) Small ubiquitin-related modifier 1 [SUMO-1] 37,420 Recombinant E. coli GST"
+105	SYH_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P12081) Histidyl-tRNA synthetase [Jo-1] 58,223 Recombinant E. coli"
+106	TAU_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P10636) Microtubule-associated protein tau [Tau protein] 46,810 Recombinant E. coli 6-His"
+107	THIO_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P10599) Thioredoxin 12,424 Recombinant E. coli 6-His"
+108	TNFA_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P01375) Tumor necrosis factor [TNF-alpha] 17,350 Recombinant E. coli"
+109	TRFE_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P02787) Serotransferrin [Apotransferrin] 75,143 Plasma Glycosylation"
+110	TRFL_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P02788) Lactotransferrin 78,289 Milk Glycosylation"
+111	UB2E1_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	(P51965) Ubiquitin-conjugating enzyme E2 E1 [UbcH6]
+112	UBE2C_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(O00762) Ubiquitin-conjugating enzyme E2 C [UbcH10] 20,473 Recombinant E. coli 6-His"
+113	UBE2I_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P63279) Ubiquitin-conjugating enzyme E2 I [UbcH9] 22,907 Recombinant E. coli"
+114	RS27A_HUMAN	UPS	Sigma-Aldrich Universal Protein Standard	"(P62979) Ubiquitin-40S ribosomal protein S27a 9,387 Recombinant E. coli 6-His"
+115	GAG_SCVLA	Virus infects yeast cultures	Common viral contaminants	"(P32503) Major coat protein, Saccharomyces cerevisiae virus L-A (ScV-L-A) (ScVL1)"
