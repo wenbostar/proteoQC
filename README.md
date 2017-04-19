@@ -1,3 +1,4 @@
+[![Bioconductor release build Status](http://bioconductor.org/shields/build/release/bioc/proteoQC.svg)](http://bioconductor.org/packages/release/bioc/html/proteoQC.html) 
 [![Bioconductor devel build Status](http://bioconductor.org/shields/build/devel/bioc/proteoQC.svg)](http://bioconductor.org/packages/devel/bioc/html/proteoQC.html) 
 
 
