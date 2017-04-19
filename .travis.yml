@@ -1,0 +1,24 @@
+language: r
+r: bioc-devel
+cache: packages
+sudo: false       # use container based build system
+warnings_are_errors: true
+
+script: 
+  - | 
+    R CMD build .
+    travis_wait 30 R CMD check MSnbase*tar.gz
+after_failure:
+  find *Rcheck -name '*.fail' -print -exec cat '{}' \;
+  
+after_success:
+  - travis_wait 20 Rscript -e 'covr::codecov()'
+
+# # print timings (of examples) and sysinfo
+# after_script:
+#   - dump_logs_by_extension "timings"
+#   - dump_sysinfo
+
+notifications:
+  email:
+    on_failure: wenbostar@gmail.com
