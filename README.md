@@ -3,7 +3,7 @@
 
 
 # `proteoQC`
-proteoQC is an R package for proteomics data quality assessment. This package creates an HTML format QC report for MS/MS-based proteomics data. The report is intended to allow the user to quickly assess the quality of proteomics data. The official page is the Bioconductor landing page
+*[proteoQC](http://bioconductor.org/packages/proteoQC)* is an R package for proteomics data quality assessment. This package creates an HTML format QC report for MS/MS-based proteomics data. The report is intended to allow the user to quickly assess the quality of proteomics data. The official page is the Bioconductor landing page
 ([release](http://www.bioconductor.org/packages/release/bioc/html/proteoQC.html)
 or
 [devel](http://www.bioconductor.org/packages/devel/bioc/html/proteoQC.html)
