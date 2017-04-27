@@ -10,7 +10,7 @@ msQCpipe(spectralist = NULL, fasta = "", outdir = "./", mode = "",
   cpu = 0, xmx = 2, refine = TRUE, ntt = 1, ...)
 }
 \arguments{
-\item{spectralist}{A file contains the experiment design}
+\item{spectralist}{A file contains the experiment design or a single mgf file}
 
 \item{fasta}{database file, must contain decoy sequences}
 

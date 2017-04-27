@@ -4,7 +4,7 @@
 ##' @description This function is designed to automate generating of 
 ##' target-decoy database, database searcing, post-processing and report 
 ##' generation.
-##' @param spectralist A file contains the experiment design
+##' @param spectralist A file contains the experiment design or a single mgf file
 ##' @param fasta database file, must contain decoy sequences
 ##' @param outdir output directory
 ##' @param mode identification or quantification
@@ -25,7 +25,6 @@
 ##' @param xmx  JAVA -Xmx
 ##' @param ...  Additional parameters passed to
 ##' \code{\link{read.table}} used to read the experimental design.
-##' @export 
 ##' @return A list which contains all of the information for data 
 ##' quality report generating
 ##' @author Bo Wen \email{wenbo@@genomics.cn}
@@ -90,6 +89,17 @@ msQCpipe <- function(spectralist=NULL, fasta="", outdir="./", mode="",
   }
   if(itolu!="ppm"){
     itolu="Daltons"
+  }
+    
+  ## take an mgf file as input is supported.
+  if(grepl(pattern = ".mgf",x = spectralist,ignore.case = TRUE)){
+    ## generate a design file in outdir.
+    dir.create(outdir,recursive=TRUE,showWarnings=FALSE)
+    tmp_spectralist <- data.frame(file=spectralist,sample=1, bioRep=1, techRep=1, fraction=1)
+    tmp_spectralist_file <- paste(outdir,"/sample_list.txt",sep = "",collapse = "")
+    write.table(tmp_spectralist,file = tmp_spectralist_file,col.names = TRUE,
+                row.names = FALSE,quote = FALSE,sep="\t")
+    spectralist <- tmp_spectralist_file
   }
   
   ## save all the information we need, including the input parameters,
@@ -345,7 +355,6 @@ msQCpipe <- function(spectralist=NULL, fasta="", outdir="./", mode="",
 ##' @title Load the result of \code{\link{msQCpipe}}
 ##' @description Load the result of \code{\link{msQCpipe}}
 ##' @param outdir The output directory of \code{\link{msQCpipe}}
-##' @export
 ##' @author Laurent Gatto \email{lg390@@cam.ac.uk}, 
 ##' Bo Wen \email{wenbo@@genomics.cn}
 ##' @examples 
@@ -367,7 +376,6 @@ loadmsQCres <- function(outdir) {
 ##' @param ... Additional parameters
 ##' @author Laurent Gatto \email{lg390@@cam.ac.uk}, 
 ##' Bo Wen \email{wenbo@@genomics.cn}
-##' @export
 ##' @examples
 ##' zpqc <- system.file("extdata/qc.zip", package = "proteoQC")
 ##' unzip(zpqc)
@@ -553,7 +561,6 @@ runTandem=function(spectra="",fasta="",outdir="./",outprefix="",cpu=1,enzyme=1,
 
 ##' @title Shown all modifications 
 ##' @description Shown all modifications 
-##' @export 
 ##' @return A data frame which contains all of the modifications
 ##' @author Bo Wen \email{wenbo@@genomics.cn}
 ##' @examples
@@ -569,7 +576,6 @@ showMods=function(){
 ##' @description Shown all enzymes
 ##' @return A data frame which contains all of the enzymes
 ##' @author Bo Wen \email{wenbo@@genomics.cn}
-##' @export 
 ##' @examples
 ##' showEnzyme()
 showEnzyme=function(){

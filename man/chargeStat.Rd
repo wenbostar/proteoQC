@@ -10,7 +10,7 @@ chargeStat(mgf = NULL)
 \item{mgf}{A file of mgf.}
 }
 \value{
-A vector object
+A data.frame object
 }
 \description{
 Read the charge information from mgf file

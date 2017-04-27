@@ -6,7 +6,6 @@
 ##' @description HTML format report generator
 ##' @param res An object returned by \code{\link{msQCpipe}} function
 ##' @return null
-##' @export
 ##' @author Bo Wen \email{wenbo@@genomics.cn}
 ##' @examples
 ##' zpqc <- system.file("extdata/qc.zip", package = "proteoQC")

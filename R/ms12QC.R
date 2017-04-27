@@ -5,15 +5,11 @@
 ##' @param outdir Output directory
 ##' @param cpu The number of cpu used
 ##' @return A data frame 
-##' @export
 ##' @author Bo Wen \email{wenbo@@genomics.cn}
 calcMSQCMetrics=function(spectraList=NULL,cpu=2,outdir="./"){
-  
-  #library("Rcpp")
   exp <- read.delim(spectraList)
   if(cpu==0){
     cpu <- detectCores()
-    
   }
   if(cpu>=4){
     cpu=4

@@ -4,14 +4,13 @@
 \alias{labelRatio}
 \title{Calculate the labeling efficiency of isobaric labeling data}
 \usage{
-labelRatio(ms = NULL, iClass = 1, delta = 0.05, plot = TRUE)
+labelRatio(ms = NULL, reporter = 1, plot = TRUE)
 }
 \arguments{
 \item{ms}{MS/MS file.}
 
-\item{iClass}{Isobaric tag class, 1=iTRAQ-8plex.}
-
-\item{delta}{The mass error for reporter matching.}
+\item{reporter}{Isobaric tag class, 1=iTRAQ-4plex, 2=iTRAQ-8plex, 3=TMT-6plex.
+4=TMT-10plex.}
 
 \item{plot}{Logical value}
 }
@@ -24,7 +23,7 @@ Calculate the labeling efficiency of isobaric labeling data
 \examples{
 mgf.zip <- system.file("extdata/mgf.zip", package = "proteoQC")
 unzip(mgf.zip)
-a <- labelRatio("test.mgf")
+a <- labelRatio("test.mgf",reporter=2)
 }
 \author{
 Bo Wen \email{wenbo@genomics.cn}

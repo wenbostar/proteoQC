@@ -10,7 +10,6 @@
 ##' @param outfile The output file name of protein group result.
 ##' @param xmx JAVA -Xm
 ##' @return NULL
-##' @export
 ##' @author Bo Wen \email{wenbo@@genomics.cn}
 ##' @examples
 ##' pep.zip <- system.file("extdata/pep.zip", package = "proteoQC")
@@ -38,53 +37,67 @@ proteinGroup=function(file=NULL,db="",pepColName="peptide",
 ##' @title Charge distribution
 ##' @description Read the charge information from mgf file
 ##' @param mgf A file of mgf.
-##' @return A vector object
-##' @export
+##' @return A data.frame object
 ##' @author Bo Wen \email{wenbo@@genomics.cn}
 ##' @examples
 ##' mgf.zip <- system.file("extdata/mgf.zip", package = "proteoQC")
 ##' unzip(mgf.zip)
 ##' charge <- chargeStat("test.mgf")
 chargeStat=function(mgf=NULL){
-  result <- .Call('ChargeCount_Cpp', PACKAGE = 'proteoQC', mgf)
-  charge <- unlist(result)
-  names(charge) <- gsub(pattern = "\\+.*$",replacement = "",x=names(charge))
-  return(charge);
+  msmsdata <- readMgfData(mgf)
+  charge_result <- precursorCharge(msmsdata)
+  dat <- as.data.frame(table(charge_result))
+  names(dat) <- c("Charge","Number")
+  return(dat);
 }
 
 ##' @title Calculate the labeling efficiency of isobaric labeling data 
 ##' @description Calculate the labeling efficiency of isobaric labeling data
 ##' @param ms MS/MS file.
-##' @param iClass Isobaric tag class, 1=iTRAQ-8plex.
-##' @param delta The mass error for reporter matching.
+##' @param reporter Isobaric tag class, 1=iTRAQ-4plex, 2=iTRAQ-8plex, 3=TMT-6plex.
+##' 4=TMT-10plex.
 ##' @param plot Logical value
 ##' @return A vector object
-##' @export
 ##' @author Bo Wen \email{wenbo@@genomics.cn}
 ##' @examples
 ##' mgf.zip <- system.file("extdata/mgf.zip", package = "proteoQC")
 ##' unzip(mgf.zip)
-##' a <- labelRatio("test.mgf")
-labelRatio=function(ms=NULL,iClass=1,delta=0.05,plot=TRUE){
-  result <- .Call('LableRatio_Cpp', PACKAGE = 'proteoQC', ms,iClass,delta)
-  result <- unlist(result)
-  
+##' a <- labelRatio("test.mgf",reporter=2)
+labelRatio=function(ms=NULL,reporter=1,plot=TRUE){
+  msmsdata <- readMgfData(ms)
+  if(reporter==1){
+      reporterClass <- iTRAQ4
+  }else if(reporter==2){
+      reporterClass <- iTRAQ8
+  }else if(reporter==3){
+      reporterClass <- TMT6
+  }else if(reporter==4){
+      reporterClass <- TMT10
+  }
+  result <- as.data.frame(exprs(quantify(msmsdata, reporters = reporterClass, method = "max")))
+
   if(plot){
-    label.names <- NULL
-    if(iClass==1){
-      label.names <- paste("I",c(113:119,121),sep="")
-    }
-    label.names <- c(label.names,"none")
-    dat <- sapply(label.names,function(x){
-      sum(result[grep(pattern = x,x = names(result))])})
-    dat <- data.frame(x=dat/sum(result),label=names(dat))
-    dat$ratio <- sprintf("%.2f%%",dat$x*100)
-    p <- ggplot(data = dat, aes(x=label,y=x, fill=label))+
+      
+    dat <- gather(result,"Tag","Intensity") 
+    nspectra <- nrow(result)
+    databar <- group_by(dat,Tag) %>% dplyr::summarise(n=sum(!is.na(Intensity)))
+    databar$ratio <- databar$n/nspectra
+    databar$label <- sprintf("%.2f%%",databar$ratio*100)
+    
+    p <- ggplot(data = databar, aes(x=Tag,y=ratio, fill=Tag))+
       geom_bar(stat="identity",width=.5)+
       xlab("Isobaric Tag")+
       ylab("Ratio of labeling")+
       theme(legend.position = "none")+
-      geom_text(mapping = aes(label=ratio),vjust=-0.8,size=5)
+      geom_text(mapping = aes(label=label),vjust=-0.8,size=3)
+    print(p)
+    
+    p <- ggplot(data = dat, aes(x=Tag,y=log2(Intensity), fill=Tag))+
+        geom_boxplot(width=0.4)+
+        xlab("Isobaric Tag")+
+        ylab("log2(Intensity)")+
+        theme(legend.position = "none")
+        
     print(p)
   }
   

@@ -225,6 +225,16 @@ qcres <- loadmsQCres("./qc")
 print(qcres)
 ```
 
+### Set MS/MS searching parameters
+
+When we perform the QC analysis, we need to set several parameters for MS/MS searching.
+`proteoQC` provides a table about modifications. Users can select modifications using this table.
+Please use function **showMods** to print the available modifications. For the enzyme setting, please use function **showEnzyme** to print the available enzyme.
+
+```{r}
+showMods()
+```
+
 ## Generating the QC report
 
 The final quality report can be generated with the
@@ -316,10 +326,27 @@ and TMT, is a very important experiment quality metrics. We provide a function
 **labelRatio** to calculate this metrics. You can use the function 
 as below:
 
-```{r}
+```{r warning=FALSE, cache=TRUE}
 mgf.zip <- system.file("extdata/mgf.zip", package = "proteoQC")
 unzip(mgf.zip)
-a <- labelRatio("test.mgf")
+a <- labelRatio("test.mgf",reporter = 2)
+```
+
+## Precusor charge distribution
+
+Given an MGF file, **chargeStat** function can be used to get the precusor charge distribution.
+
+```{r cache=TRUE}
+library(dplyr)
+library(plotly)
+mgf.zip <- system.file("extdata/mgf.zip", package = "proteoQC")
+unzip(mgf.zip)
+charge <- chargeStat("test.mgf")
+pp <- plot_ly(charge, labels = ~Charge, values = ~Number, type = 'pie') %>%
+        layout(title = 'Charge distribution',
+        xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+        yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+pp
 ```
 
 

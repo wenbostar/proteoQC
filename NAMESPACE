@@ -1,9 +1,8 @@
 
-useDynLib(proteoQC)
-importFrom(Rcpp, evalCpp)
 
 import(XML)
 import(parallel)
+import(rmarkdown)
 importFrom(ggplot2, aes, aes_string, element_text, facet_grid,
            facet_wrap, geom_bar, geom_errorbar, geom_histogram,
            geom_line, geom_point, geom_text, geom_vline, ggplot,
@@ -22,6 +21,14 @@ importFrom(seqinr, read.fasta, write.fasta)
 importFrom(VennDiagram, venn.diagram)
 importFrom(MSnbase, readMSData, header)
 
+importFrom("grDevices", "dev.off", "png")
+importFrom("graphics", "box", "hist", "lines", "par")
+importFrom("stats", "density", "quantile", "sd")
+importFrom("utils", "read.delim", "read.table", "write.table")
+importFrom("rpx","pxfiles","PXDataset")
+importFrom("tidyr","gather")
+importFrom("dplyr","group_by","%>%")
+importFrom("plotly","plot_ly","layout")
 
 export(msQCpipe)
 export(reportHTML)
