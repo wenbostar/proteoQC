@@ -26,7 +26,11 @@ you are doing)
 ```{r installgh, eval = FALSE}
 biocLite("wenbostar/proteoQC")
 ```
+## Citation
 
+To cite the `proteoQC` package in publications, please use:
+
+> Wen B and Gatto L (2017). proteoQC: An R package for proteomics data quality control. R package version 1.15.0, https://github.com/wenbostar/proteoQC.
 
 ## Contribution
 
