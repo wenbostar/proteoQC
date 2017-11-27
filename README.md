@@ -32,6 +32,12 @@ To cite the `proteoQC` package in publications, please use:
 
 > Wen B and Gatto L (2017). proteoQC: An R package for proteomics data quality control. R package version 1.15.0, https://github.com/wenbostar/proteoQC.
 
+## proteoQC cited publications
+
+1. Gatto, Laurent, et al. "Visualization of proteomics data using R and Bioconductor." Proteomics 15.8 (2015): 1375-1389.
+2. Bittremieux, Wout, et al. "Computational quality control tools for mass spectrometry proteomics." Proteomics 17.3-4 (2017).
+3. Samandi, Sondos, et al. "Deep transcriptome annotation enables the discovery and functional characterization of cryptic small proteins." eLife 6 (2017): e27860.
+
 ## Contribution
 
 Contributions to the package are more than welcome. 
