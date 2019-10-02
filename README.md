@@ -39,6 +39,8 @@ To cite the `proteoQC` package in publications, please use:
 2. Bittremieux, Wout, et al. "Computational quality control tools for mass spectrometry proteomics." Proteomics 17.3-4 (2017).
 3. Samandi, Sondos, et al. "Deep transcriptome annotation enables the discovery and functional characterization of cryptic small proteins." eLife 6 (2017): e27860.
 4. Belghit I, Lock E J, Fumière O, et al. Species-Specific Discrimination of Insect Meals for Aquafeeds by Direct Comparison of Tandem Mass Spectra. Animals, 2019, 9(5): 222.
+5. Walzer M., Vizcaíno J.A. (2020) Review of Issues and Solutions to Data Analysis Reproducibility and Data Quality in Clinical Proteomics. In: Matthiesen R. (eds) Mass Spectrometry Data Analysis in Proteomics. Methods in Molecular Biology, vol 2051. Humana, New York, NY
+
 
 ## Contribution
 
