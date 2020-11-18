@@ -73,6 +73,8 @@ labelRatio=function(ms=NULL,reporter=1,plot=TRUE){
       reporterClass <- TMT6
   }else if(reporter==4){
       reporterClass <- TMT10
+  }else if (reporter==5){
+      reporterClass <- TMT16
   }
   result <- as.data.frame(exprs(quantify(msmsdata, reporters = reporterClass, method = "max")))
 
